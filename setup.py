@@ -42,7 +42,6 @@ setup(
 
     # Choose your license
     license='MIT',
-    copyright = 'Copyright (c) 2017 Zhiya Zuo',
 
     # See https://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
