@@ -21,8 +21,8 @@ setup(
     name='python-modularity-maximization',
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
-    packages=find_packages('modularity_maximization', exclude=['data', 'test*']),
-    #packages=['modularity_maximization'],
+    packages=['modularity_maximization'],
+    exclude_package_data={'': ['data*']},
 
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see

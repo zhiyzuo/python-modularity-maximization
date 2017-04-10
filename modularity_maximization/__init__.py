@@ -2,7 +2,7 @@
 
 from .community_newman import partition
 
-__version__ = '0.0.1'
+__version__ = '0.0.1rc'
 
 __license__ = """
 Copyright 2017 Zhiya Zuo
