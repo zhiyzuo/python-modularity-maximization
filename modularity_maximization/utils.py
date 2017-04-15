@@ -46,7 +46,7 @@ def _get_delta_Q(X, a):
         Returns
         -------
         float
-            The corresponding ΔQ
+            The corresponding \deltaQ
     '''
     return np.dot(np.dot(a.T, X), a)[0, 0]
 
