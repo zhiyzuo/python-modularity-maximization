@@ -30,6 +30,24 @@ def get_base_modularity_matrix(network):
     else:
         raise TypeError('Graph type not supported. Use either nx.Graph or nx.Digraph')
 
+def _get_delta_Q(X, a):
+    '''
+        Calculate the detal modularity
+
+        Parameters
+        ----------
+        X : np.matrix
+            B_hat_g
+        a : np.matrix
+            s, which is the membership vector
+
+        Returns
+        -------
+        float
+            The corresponding ΔQ
+    '''
+    return np.dot(np.dot(a.T, X), a)[0, 0]
+
 def get_modularity(network, community_dict):
     '''
         Calculate the modularity
@@ -66,8 +84,8 @@ def get_modularity(network, community_dict):
         out_degree = dict(network.out_degree())
         M = 1.*network.number_of_edges()
 
+    nodes = np.list(network)
     '''
-    nodes = np.asarray(network)
     for i in range(nodes.size):
         ui = nodes[i]
         for j in range(nodes.size):
@@ -79,8 +97,8 @@ def get_modularity(network, community_dict):
     from itertools import product
     Q = np.sum([A[i,j] - in_degree[nodes[i]]*\
                          out_degree[nodes[i]]/M\
-                for i,j in product(range(node.size), \
-                                   range(node.size))])
+                for i,j in product(range(len(node)), \
+                                   range(len(node)))])
 
     return Q / M
 
@@ -146,5 +164,6 @@ def get_mod_matrix(network, comm_nodes=None, B=None):
     if type(network) == nx.DiGraph:
         B_hat_g = B_hat_g + B_hat_g.T
 
-    return B_hat_g
+    from scipy.sparse import csr_matrix
+    return csr_matrix(B_hat_g)
 
