@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
 from .community_newman import partition
+from .utils import get_modularity
 
-__version__ = '0.0.1rc'
+__version__ = '0.0.1rc04142017'
 
 __license__ = """
 Copyright 2017 Zhiya Zuo

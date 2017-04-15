@@ -33,6 +33,8 @@ def get_base_modularity_matrix(network):
 def _get_delta_Q(X, a):
     '''
         Calculate the detal modularity
+        .. math::
+            \deltaQ = s^T \cdot \^{B_{g}} \cdot s
 
         Parameters
         ----------
@@ -53,9 +55,11 @@ def get_modularity(network, community_dict):
         Calculate the modularity
 
         Undirected:
-            Q = 1/2m * ∑[A_ij - k_i * k_j/2m] * δ_(c_i, c_j)
+        .. math::
+            Q = \frac{1}{2m}\sum_{i,j} \(A_ij - \frac{k_i k_j}{2m}\) * \detal_(c_i, c_j)
         Directed:
-            Q = 1/m * ∑[A_ij - k_i^in * k_j^out / m] * δ_(c_i, c_j)
+        .. math::
+            Q = \frac{1}{m}\sum_{i,j} \(A_ij - \frac{k_i^{in} k_j^{out}}{m}\) * \detal_{c_i, c_j}
 
         Parameters
         ----------
@@ -100,9 +104,12 @@ def get_mod_matrix(network, comm_nodes=None, B=None):
         (a.k.a., generalized modularity matrix)
 
         Specifically,
-            B^g_(i,j) = B_ij - δ_ij * ∑_(k∈g) B_ik
-            B_ij = A_ij - k_i*k_j/2m
-            m = |E| (total # of edges in the whole network)
+        .. math::
+            B^g_{i,j} = B_ij - \delta_{ij} \sum_(k \in g) B_ik
+            m = \abs[\Big]{E}
+            B_ij = A_ij - \dfrac{k_i k_j}{2m}
+            OR...
+            B_ij = \(A_ij - \frac{k_i^{in} k_j^{out}}{m}
 
         When `comm_nodes` is None or all nodes in `network`, this reduces to `B`
 
