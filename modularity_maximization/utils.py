@@ -84,24 +84,14 @@ def get_modularity(network, community_dict):
         out_degree = dict(network.out_degree())
         M = 1.*network.number_of_edges()
 
-    nodes = np.list(network)
-    '''
-    for i in range(nodes.size):
-        ui = nodes[i]
-        for j in range(nodes.size):
-            uj = nodes[j]
-            if community_dict[ui] == community_dict[uj]:
-                Q += A[i,j] - in_degree[ui]*out_degree[uj]/M
-    '''
-
     from itertools import product
+    nodes = list(network)
     Q = np.sum([A[i,j] - in_degree[nodes[i]]*\
-                         out_degree[nodes[i]]/M\
-                for i,j in product(range(len(node)), \
-                                   range(len(node)))])
-
+                         out_degree[nodes[j]]/M\
+                 for i, j in product(range(len(nodes)),\
+                                    range(len(nodes))) \
+                if community_dict[nodes[i]] == community_dict[nodes[j]]])
     return Q / M
-
 
 def get_mod_matrix(network, comm_nodes=None, B=None):
     '''
@@ -164,6 +154,5 @@ def get_mod_matrix(network, comm_nodes=None, B=None):
     if type(network) == nx.DiGraph:
         B_hat_g = B_hat_g + B_hat_g.T
 
-    from scipy.sparse import csr_matrix
-    return csr_matrix(B_hat_g)
+    return B_hat_g
 
