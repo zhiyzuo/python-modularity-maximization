@@ -1,4 +1,5 @@
 Python implementation of Newman's spectral methods to maximize modularity.
+==========================================================================
 
 See:
     - Leicht, E. A., & Newman, M. E. J. (2008). Community Structure in Directed Networks. Physical Review Letters, 100(11), 118703. https://doi.org/10.1103/PhysRevLett.100.118703
