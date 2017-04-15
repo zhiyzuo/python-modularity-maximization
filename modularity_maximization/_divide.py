@@ -38,7 +38,7 @@ def _divide(network, community_dict, comm_index, B, refine=False):
         s = np.asmatrix([[1. if u_1_i > 0 else -1.] for u_1_i in u_1])
         if refine:
             improve_modularity(network, comm_nodes, s, B)
-        delta_modularity = (s.T*B_hat_g*s)[0,0]
+        delta_modularity = util._get_delta_Q(B_hat_g, s)
         if delta_modularity > 0:
             g1_nodes = np.array([comm_nodes[i] \
                                  for i in range(u_1.shape[0]) \
@@ -81,12 +81,12 @@ def improve_modularity(network, comm_nodes, s, B):
         # keep moving until none left
         while len(unmoved) > 0:
             # init Q
-            Q0 = (s.T*B_hat_g*s)[0,0]
+            Q0 = util._get_delta_Q(B_hat_g, s)
             scores = np.zeros(len(unmoved))
             for k_index in range(scores.size):
                 k = comm_nodes.index(unmoved[k_index])
                 s[k, 0] = -s[k, 0]
-                scores[k_index] = (s.T*B_hat_g*s)[0,0] - Q0
+                scores[k_index] = util._get_delta_Q(B_hat_g, s) - Q0
                 s[k, 0] = -s[k, 0]
             _j = np.argmax(scores)
             j = comm_nodes.index(unmoved[_j])
