@@ -60,23 +60,27 @@ def get_modularity(network, community_dict):
         # for undirected graphs, in and out treated as the same thing
         in_degree = dict(nx.degree(network))
         out_degree = dict(nx.degree(network))
+        M = 2.*(network.number_of_edges())
     elif type(network) == nx.DiGraph:
         in_degree = dict(network.in_degree())
         out_degree = dict(network.out_degree())
+        M = 1.*network.number_of_edges()
 
-    if type(network) == nx.Graph:
-        M = 2.*(network.number_of_edges())
-    else:
-        M = network.number_of_edges()
-
-    node_indices = range(network.number_of_nodes())
-    nodes = list(network.nodes())
-    for i in node_indices:
+    '''
+    nodes = np.asarray(network)
+    for i in range(nodes.size):
         ui = nodes[i]
-        for j in node_indices:
+        for j in range(nodes.size):
             uj = nodes[j]
             if community_dict[ui] == community_dict[uj]:
                 Q += A[i,j] - in_degree[ui]*out_degree[uj]/M
+    '''
+
+    from itertools import product
+    Q = np.sum([A[i,j] - in_degree[nodes[i]]*\
+                         out_degree[nodes[i]]/M\
+                for i,j in product(range(node.size), \
+                                   range(node.size))])
 
     return Q / M
 
