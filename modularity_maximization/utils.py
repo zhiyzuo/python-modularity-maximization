@@ -35,6 +35,7 @@ def _get_delta_Q(X, a):
     Calculate the detal modularity
     .. math::
         \deltaQ = s^T \cdot \^{B_{g}} \cdot s
+    .. math:: \deltaQ = s^T \cdot \^{B_{g}} \cdot s
 
     Parameters
     ----------
@@ -46,19 +47,20 @@ def _get_delta_Q(X, a):
     Returns
     -------
     float
-        The corresponding \deltaQ
+        The corresponding :math:`\deltaQ`
     '''
+
     return np.dot(np.dot(a.T, X), a)[0, 0]
 
 def get_modularity(network, community_dict):
     '''
-    Calculate the modularity
+    Calculate the modularity.
+
     Undirected:
-    .. math::
-        Q = \frac{1}{2m}\sum_{i,j} \(A_ij - \frac{k_i k_j}{2m}\) * \detal_(c_i, c_j)
+    .. math:: Q = \frac{1}{2m}\sum_{i,j} \(A_ij - \frac{k_i k_j}{2m}\) * \detal_(c_i, c_j)
+
     Directed:
-    .. math::
-        Q = \frac{1}{m}\sum_{i,j} \(A_ij - \frac{k_i^{in} k_j^{out}}{m}\) * \detal_{c_i, c_j}
+    .. math:: Q = \frac{1}{m}\sum_{i,j} \(A_ij - \frac{k_i^{in} k_j^{out}}{m}\) * \detal_{c_i, c_j}
 
     Parameters
     ----------
@@ -110,7 +112,7 @@ def get_mod_matrix(network, comm_nodes=None, B=None):
         OR...
         B_ij = \(A_ij - \frac{k_i^{in} k_j^{out}}{m}
 
-    When `comm_nodes` is None or all nodes in `network`, this reduces to `B`
+    When `comm_nodes` is None or all nodes in `network`, this reduces to :math:`B`
 
     Parameters
     ----------
@@ -126,7 +128,6 @@ def get_mod_matrix(network, comm_nodes=None, B=None):
     np.matrix
         The modularity of `comm_nodes` within `network`
     '''
-
 
     if comm_nodes is None:
         comm_nodes = list(network)

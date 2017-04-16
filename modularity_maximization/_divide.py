@@ -18,11 +18,9 @@ def _divide(network, community_dict, comm_index, B, refine=False):
     -------
     tuple
         If the given community is indivisible, return (None, None)
-        -------
         If the given community is divisible, return a tuple where
         the 1st element is a node list for the 1st sub-group and
         the 2nd element is a node list for the original group
-
     '''
 
     comm_nodes = tuple(u for u in community_dict \
@@ -67,7 +65,6 @@ def improve_modularity(network, comm_nodes, s, B):
         A matrix of node membership. Only +1/-1
     B: np.amtrix
         Modularity matrix for `network`
-
     '''
 
     # iterate until no increment of Q
