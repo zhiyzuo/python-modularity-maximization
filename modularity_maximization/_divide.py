@@ -7,22 +7,20 @@ from scipy.linalg import eigh
 
 def _divide(network, community_dict, comm_index, B, refine=False):
     '''
-        Bisection of a community in `network`.
+    Bisection of a community in `network`.
 
-        Parameters
-        ----------
-        network : nx.Graph or nx.DiGraph
-            The network of interest
+    Parameters
+    ----------
+    network : nx.Graph or nx.DiGraph
+        The network of interest
 
-        Returns
-        -------
-        tuple
-            If the given community is indivisible, return (None, None)
-            -------
-            If the given community is divisible, return a tuple where
-            the 1st element is a node list for the 1st sub-group and
-            the 2nd element is a node list for the original group
-
+    Returns
+    -------
+    tuple
+        If the given community is indivisible, return (None, None)
+        If the given community is divisible, return a tuple where
+        the 1st element is a node list for the 1st sub-group and
+        the 2nd element is a node list for the original group
     '''
 
     comm_nodes = tuple(u for u in community_dict \
@@ -54,20 +52,19 @@ def _divide(network, community_dict, comm_index, B, refine=False):
 
 def improve_modularity(network, comm_nodes, s, B):
     '''
-        Fine tuning of the initial division from `_divide`
-        Modify `s` inplace
+    Fine tuning of the initial division from `_divide`
+    Modify `s` inplace
 
-        Parameters
-        ----------
-        network : nx.Graph or nx.DiGraph
-            The network of interest
-        comm_nodes: iterable
-            List of nodes for the original group
-        s: np.matrix
-            A matrix of node membership. Only +1/-1
-        B: np.amtrix
-            Modularity matrix for `network`
-
+    Parameters
+    ----------
+    network : nx.Graph or nx.DiGraph
+        The network of interest
+    comm_nodes: iterable
+        List of nodes for the original group
+    s: np.matrix
+        A matrix of node membership. Only +1/-1
+    B: np.amtrix
+        Modularity matrix for `network`
     '''
 
     # iterate until no increment of Q

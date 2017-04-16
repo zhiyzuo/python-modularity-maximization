@@ -5,22 +5,22 @@ import networkx as nx
 
 def get_base_modularity_matrix(network):
     '''
-        Obtain the modularity matrix for the whole network
+    Obtain the modularity matrix for the whole network
 
-        Parameters
-        ----------
-        network : nx.Graph or nx.DiGraph
-            The network of interest
+    Parameters
+    ----------
+    network : nx.Graph or nx.DiGraph
+        The network of interest
 
-        Returns
-        -------
-        np.matrix
-            The modularity matrix for `network`
+    Returns
+    -------
+    np.matrix
+        The modularity matrix for `network`
 
-        Raises
-        ------
-        TypeError
-            When the input `network` does not fit either nx.Graph or nx.DiGraph
+    Raises
+    ------
+    TypeError
+        When the input `network` does not fit either nx.Graph or nx.DiGraph
     '''
 
     if type(network) == nx.Graph:
@@ -32,47 +32,43 @@ def get_base_modularity_matrix(network):
 
 def _get_delta_Q(X, a):
     '''
-        Calculate the detal modularity
-        .. math::
-            \deltaQ = s^T \cdot \^{B_{g}} \cdot s
+    Calculate the detal modularity
+    .. math:: \deltaQ = s^T \cdot \^{B_{g}} \cdot s
 
-        Parameters
-        ----------
-        X : np.matrix
-            B_hat_g
-        a : np.matrix
-            s, which is the membership vector
+    Parameters
+    ----------
+    X : np.matrix
+        B_hat_g
+    a : np.matrix
+        s, which is the membership vector
 
-        Returns
-        -------
-        float
-            The corresponding \deltaQ
+    Returns
+    -------
+    float
+        The corresponding :math:`\deltaQ`
     '''
     return np.dot(np.dot(a.T, X), a)[0, 0]
 
 def get_modularity(network, community_dict):
     '''
-        Calculate the modularity
+    Calculate the modularity.
+    Undirected:
+    .. math:: Q = \frac{1}{2m}\sum_{i,j} \(A_ij - \frac{k_i k_j}{2m}\) * \detal_(c_i, c_j)
+    Directed:
+    .. math:: Q = \frac{1}{m}\sum_{i,j} \(A_ij - \frac{k_i^{in} k_j^{out}}{m}\) * \detal_{c_i, c_j}
 
-        Undirected:
-        .. math::
-            Q = \frac{1}{2m}\sum_{i,j} \(A_ij - \frac{k_i k_j}{2m}\) * \detal_(c_i, c_j)
-        Directed:
-        .. math::
-            Q = \frac{1}{m}\sum_{i,j} \(A_ij - \frac{k_i^{in} k_j^{out}}{m}\) * \detal_{c_i, c_j}
+    Parameters
+    ----------
+    network : nx.Graph or nx.DiGraph
+        The network of interest
+    community_dict : dict
+        A dictionary to store the membership of each node
+        Key is node and value is community index
 
-        Parameters
-        ----------
-        network : nx.Graph or nx.DiGraph
-            The network of interest
-        community_dict : dict
-            A dictionary to store the membership of each node
-            Key is node and value is community index
-
-        Returns
-        -------
-        float
-            The modularity of `network` given `community_dict`
+    Returns
+    -------
+    float
+        The modularity of `network` given `community_dict`
     '''
 
     Q = 0
@@ -99,35 +95,33 @@ def get_modularity(network, community_dict):
 
 def get_mod_matrix(network, comm_nodes=None, B=None):
     '''
-        This function computes the modularity matrix
-        for a specific group in the network.
-        (a.k.a., generalized modularity matrix)
+    This function computes the modularity matrix
+    for a specific group in the network.
+    (a.k.a., generalized modularity matrix)
 
-        Specifically,
-        .. math::
-            B^g_{i,j} = B_ij - \delta_{ij} \sum_(k \in g) B_ik
-            m = \abs[\Big]{E}
-            B_ij = A_ij - \dfrac{k_i k_j}{2m}
-            OR...
-            B_ij = \(A_ij - \frac{k_i^{in} k_j^{out}}{m}
+    Specifically,
+    .. math::
+       B^g_{i,j} = B_ij - \delta_{ij} \sum_(k \in g) B_ik
+       m = \abs[\Big]{E}
+       B_ij = A_ij - \dfrac{k_i k_j}{2m}
+       B_ij = \(A_ij - \frac{k_i^{in} k_j^{out}}{m}
 
-        When `comm_nodes` is None or all nodes in `network`, this reduces to `B`
+    When `comm_nodes` is None or all nodes in `network`, this reduces to :math:`B`
 
-        Parameters
-        ----------
-        network : nx.Graph or nx.DiGraph
-            The network of interest
-        comm_nodes : iterable (list, np.array, or tuple)
-            List of nodes that defines a community
-        B : np.matrix
-            Modularity matrix of `network`
+    Parameters
+    ----------
+    network : nx.Graph or nx.DiGraph
+        The network of interest
+    comm_nodes : iterable (list, np.array, or tuple)
+        List of nodes that defines a community
+    B : np.matrix
+        Modularity matrix of `network`
 
-        Returns
-        -------
-        np.matrix
-            The modularity of `comm_nodes` within `network`
+    Returns
+    -------
+    np.matrix
+        The modularity of `comm_nodes` within `network`
     '''
-
 
     if comm_nodes is None:
         comm_nodes = list(network)
