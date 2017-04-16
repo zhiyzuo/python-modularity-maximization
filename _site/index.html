@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width">
+
+        <title>Community Detection By Maximizing Modularity : Get Started</title>
+        <meta name="description" content="Python Implementaion of Newman Spectral Method">
+
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/python-modularity-maximization/css/syntax.css">
+        <link rel="stylesheet" href="/python-modularity-maximization/css/main.css">
+    </head>
+    <body>
+
+        <a href="https://github.com/zhiyzuo/python-scopus"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+
+        <div class="container">
+            <div class="row">
+                <div id="header" class="col-sm-12">
+                    <h4><a class="brand" href="/python-modularity-maximization/">Community Detection By Maximizing Modularity</a>
+    <small>Python Implementaion of Newman Spectral Method</small>
+</h4>
+
+                </div>
+            </div>
+
+            <div class="row">
+                
+                
+                    <div id="navigation" class="col-sm-2">
+                        <ul class="nav nav-list">
+    <li><a href="/python-modularity-maximization/">Home</a></li>
+    
+        
+        
+
+        
+            
+                <li class="nav-header">Documentation</li>
+            
+            <li data-order=""><a href="/python-modularity-maximization/doc/quick-start.html">Quick Start</a></li>
+        
+    
+        
+        
+
+        
+            
+                <li class="nav-header">Miscellaneous</li>
+            
+            <li data-order=""><a href="/python-modularity-maximization/misc/license.html">License</a></li>
+        
+            
+            <li data-order=""><a href="/python-modularity-maximization/misc/contact.html">Contact</a></li>
+        
+    
+<!-- List additional links. It is recommended to add a divider
+    e.g.  first to break up the content. -->
+    <li class="divider"></li>
+</ul>
+
+                    </div>
+
+                    <div id="content" class="col-sm-10">
+                        <h3 id="reference">Reference</h3>
+
+<p>Please cite the following papers when you use these algorithms in your research:</p>
+
+<p>[1] Newman, M. E. J. (2006). Modularity and community structure in networks. Proceedings of the National Academy of Sciences of the United States of America, 103(23), 8577–82. https://doi.org/10.1073/pnas.0601602103</p>
+
+<p>[2] Leicht, E. A., &amp; Newman, M. E. J. (2008). Community Structure in Directed Networks. Physical Review Letters, 100(11), 118703. https://doi.org/10.1103/PhysRevLett.100.118703</p>
+
+<h3 id="get-acquainted-with-modularity-maxmization">Get Acquainted with Modularity Maxmization</h3>
+
+<p>Before apply these algorithms, please get yourself acquainted with the concept of modularity and the spectral algorithm to maximize modularity.</p>
+
+<h3 id="download">Download</h3>
+
+<p>PyScopus requires:</p>
+
+<ul>
+  <li>
+    <p><a href="https://www.python.org/download/releases/2.7/">Python 2.7</a></p>
+  </li>
+  <li>
+    <p><a href="http://www.numpy.org/">Numpy</a></p>
+  </li>
+  <li>
+    <p><a href="https://networkx.github.io/">Networkx</a></p>
+  </li>
+  <li>
+    <p><a href="https://scipy.org/">Scipy</a></p>
+  </li>
+</ul>
+
+<h5 id="1-using-pip-or-easy_install">1. Using <code class="highlighter-rouge">pip</code> or <code class="highlighter-rouge">easy_install</code></h5>
+
+<p>The easiest way of installing is to use <code class="highlighter-rouge">pip</code>:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>pip install python-modularity-maximization<span class="o">==</span>0.0.1rc0</code></pre></figure>
+
+<p>or <code class="highlighter-rouge">easy_install</code></p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>easy_install python-modularity-maximization<span class="o">==</span>0.0.1rc0</code></pre></figure>
+
+<h5 id="2-manual-installation">2. Manual installation</h5>
+
+<p>You can also clone and install the project from its <a href="https://github.com/zhiyzuo/python-modularity-maximization" target="_blank">GitHub homepage</a> like this:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>git clone https://github.com/zhiyzuo/python-modularity-maximization.git
+<span class="gp">$ </span><span class="nb">cd </span>python-modularity-maximization/
+<span class="gp">$ </span>python setup.py install</code></pre></figure>
+
+<p>And then please refer to the quick start for usage.</p>
+
+
+                    </div>
+                
+            </div>
+
+            
+
+            <div class="row">
+                <div id="footer" class="col-sm-12">
+                    Documentation for <a href="https://github.com/zhiyzuo/python-modularity-maximization">Community Detection By Maximizing Modularity</a>
+
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function orderNav() {
+                var list,
+                    section,
+                    header,
+                    sections = [],
+                    lists = {},
+                    headers = {};
+
+                var navUl = document.querySelectorAll('#navigation ul')[0],
+                    navLis = document.querySelectorAll('#navigation ul li');
+
+                if (!navUl) return;
+
+                for (var i = 0; i < navLis.length; i++) {
+                    var order, li = navLis[i];
+
+                    if (li.classList.contains('nav-header')) {
+                        section = li.textContent || li.innerText;
+                        sections.push(section);
+                        headers[section] = li;
+                        continue;
+                    }
+
+                    if (!lists[section]) {
+                        lists[section] = [];
+                    }
+
+                    order = parseFloat(li.getAttribute('data-order'))
+                    lists[section].push([order, li]);
+                }
+
+                for (var i = 0; i < sections.length; i++) {
+                    section = sections[i];
+                    list = lists[section].sort(function(a, b) {
+                        return a[0] - b[0];
+                    });
+
+                    if (header = headers[section]) {
+                        navUl.appendChild(header);
+                    }
+                    for (var j = 0; j < list.length; j++) {
+                        navUl.appendChild(list[j][1]);
+                    }
+                }
+            }
+
+            if (document.querySelectorAll) orderNav();
+        </script>
+        
+    </body>
+</html>
