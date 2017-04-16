@@ -6,7 +6,7 @@ See:
 
     - Newman, M. E. J. (2006). Modularity and community structure in networks. Proceedings of the National Academy of Sciences of the United States of America, 103(23), 8577–82. https://doi.org/10.1073/pnas.0601602103
 
-A quick start can be found <a href="https://zhiyzuo.github.io/python-modularity-maximization/" target="_blank">here</a>
+A quick start can be found .. _here: https://zhiyzuo.github.io/python-modularity-maximization/
 
 All the datasets in `./data` comes from http://www-personal.umich.edu/~mejn/netdata/
 
