@@ -5,3 +5,4 @@ python_scopus.egg-info/
 dist/
 build/
 pyscopus/
+.ipy*
