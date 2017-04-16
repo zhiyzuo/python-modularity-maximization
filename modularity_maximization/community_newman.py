@@ -9,33 +9,33 @@ __author__ = """Zhiya Zuo (zhiyazuo@gmail.com)"""
 
 def partition(network, refine=True):
     '''
-        Cluster a network into several modules
-        using modularity maximization by spectral methods.
+    Cluster a network into several modules
+    using modularity maximization by spectral methods.
 
-        Supports directed and undirected networks.
-        Edge weights are ignored
+    Supports directed and undirected networks.
+    Edge weights are ignored
 
-        See:
-            Newman, M. E. J. (2006). Modularity and community structure in networks.
-            Proceedings of the National Academy of Sciences of the United States of America,
-            103(23), 8577–82. https://doi.org/10.1073/pnas.0601602103
+    See:
+        Newman, M. E. J. (2006). Modularity and community structure in networks.
+        Proceedings of the National Academy of Sciences of the United States of America,
+        103(23), 8577–82. https://doi.org/10.1073/pnas.0601602103
 
-            Leicht, E. A., & Newman, M. E. J. (2008). Community Structure in Directed Networks. 
-            Physical Review Letters, 100(11), 118703. https://doi.org/10.1103/PhysRevLett.100.118703
+        Leicht, E. A., & Newman, M. E. J. (2008). Community Structure in Directed Networks. 
+        Physical Review Letters, 100(11), 118703. https://doi.org/10.1103/PhysRevLett.100.118703
 
-        Parameters
-        ----------
-        network : nx.Graph or nx.DiGraph
-            The network of interest
-        refine: Boolean
-            Whether refine the `s` vector from the initial clustering
-            by repeatedly moving nodes to maximize modularity
+    Parameters
+    ----------
+    network : nx.Graph or nx.DiGraph
+        The network of interest
+    refine: Boolean
+        Whether refine the `s` vector from the initial clustering
+        by repeatedly moving nodes to maximize modularity
 
-        Returns
-        -------
-        dict
-            A dictionary that saves membership.
-            Key: node label; Value: community index
+    Returns
+    -------
+    dict
+        A dictionary that saves membership.
+        Key: node label; Value: community index
     '''
     ## preprocessing
     network = nx.convert_node_labels_to_integers(network, first_label=1, label_attribute="node_name")
