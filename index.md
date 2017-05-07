@@ -30,13 +30,13 @@ PyScopus requires:
 The easiest way of installing is to use `pip`:
 
 {%highlight bash%}
-$ pip install python-modularity-maximization==0.0.1rc0
+$ pip install python-modularity-maximization==0.0.1rc1
 {%endhighlight%}
 
  or `easy_install`
 
 {%highlight bash%}
-$ easy_install python-modularity-maximization==0.0.1rc0
+$ easy_install python-modularity-maximization==0.0.1rc1
 {%endhighlight%}
 
 ##### 2. Manual installation
