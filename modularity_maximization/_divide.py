@@ -3,7 +3,7 @@
 import utils
 import numpy as np
 import networkx as nx
-from scipy.linalg import eigh
+from scipy import sparse
 
 def _divide(network, community_dict, comm_index, B, refine=False):
     '''
@@ -28,12 +28,12 @@ def _divide(network, community_dict, comm_index, B, refine=False):
     B_hat_g = utils.get_mod_matrix(network, comm_nodes, B)
 
     # compute the top eigenvector u₁ and β₁
-    beta_1, u_1 = eigh(B_hat_g, eigvals=(B_hat_g.shape[0]-1, \
-                                         B_hat_g.shape[0]-1))
-    u_1 = u_1.flatten()
+    beta_s, u_s = sparse.linalg.eigs(B_hat_g, k=1, which='LR')
+    u_1 = u_s[:, 0]
+    beta_1 = beta_s[0]
     if beta_1 > 0:
         # divisible
-        s = np.asmatrix([[1. if u_1_i > 0 else -1.] for u_1_i in u_1])
+        s = sparse.csc_matrix(np.asmatrix([[1 if u_1_i > 0 else -1] for u_1_i in u_1]))
         if refine:
             improve_modularity(network, comm_nodes, s, B)
         delta_modularity = utils._get_delta_Q(B_hat_g, s)

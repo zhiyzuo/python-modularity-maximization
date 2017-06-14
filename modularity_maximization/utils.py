@@ -2,6 +2,7 @@
 
 import numpy as np
 import networkx as nx
+from scipy import sparse
 
 def get_base_modularity_matrix(network):
     '''
@@ -24,9 +25,9 @@ def get_base_modularity_matrix(network):
     '''
 
     if type(network) == nx.Graph:
-        return nx.modularity_matrix(network)
+        return sparse.csc_matrix(nx.modularity_matrix(network))
     elif type(network) == nx.DiGraph:
-        return nx.directed_modularity_matrix(network)
+        return sparse.csc_matrix(nx.directed_modularity_matrix(network))
     else:
         raise TypeError('Graph type not supported. Use either nx.Graph or nx.Digraph')
 
@@ -50,7 +51,9 @@ def _get_delta_Q(X, a):
         The corresponding :math:`\deltaQ`
     '''
 
-    return np.dot(np.dot(a.T, X), a)[0, 0]
+    delta_Q = (a.T.dot(X)).dot(a)
+
+    return delta_Q[0,0]
 
 def get_modularity(network, community_dict):
     '''
@@ -139,6 +142,7 @@ def get_mod_matrix(network, comm_nodes=None, B=None):
     # subset of mod matrix in g
     indices = [list(network).index(u) for u in comm_nodes]
     B_g = B[indices, :][:, indices]
+    #print 'Type of `B_g`:', type(B_g)
 
     # B^g_(i,j) = B_ij - δ_ij * ∑_(k∈g) B_ik
     # i, j ∈ g
@@ -161,5 +165,5 @@ def get_mod_matrix(network, comm_nodes=None, B=None):
     if type(network) == nx.DiGraph:
         B_hat_g = B_hat_g + B_hat_g.T
 
-    return B_hat_g
+    return sparse.csc_matrix(B_hat_g)
 
