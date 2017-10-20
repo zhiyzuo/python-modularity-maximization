@@ -107,3 +107,4 @@ ENV/
 data/.DS_Store
 .DS_Store
 *.log
+_site/
