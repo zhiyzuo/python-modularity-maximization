@@ -28,7 +28,10 @@ def _divide(network, community_dict, comm_index, B, refine=False):
     B_hat_g = utils.get_mod_matrix(network, comm_nodes, B)
 
     # compute the top eigenvector u₁ and β₁
-    beta_s, u_s = sparse.linalg.eigs(B_hat_g, k=1, which='LR')
+    if B_hat_g.shape[0] < 3:
+        beta_s, u_s = utils.largest_eig(B_hat_g)
+    else:
+        beta_s, u_s = sparse.linalg.eigs(B_hat_g, k=1, which='LR')
     u_1 = u_s[:, 0]
     beta_1 = beta_s[0]
     if beta_1 > 0:
@@ -112,4 +115,3 @@ def improve_modularity(network, comm_nodes, s, B):
         # Stop if ΔQ <= 0 
         if delta_modularity <= 0:
             break
-

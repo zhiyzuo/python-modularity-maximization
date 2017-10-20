@@ -2,6 +2,7 @@
 import numpy as np
 import networkx as nx
 from scipy import sparse
+from scipy.linalg import eig
 from itertools import product
 
 def get_base_modularity_matrix(network):
@@ -172,3 +173,14 @@ def get_mod_matrix(network, comm_nodes=None, B=None):
 
     return sparse.csc_matrix(B_hat_g)
 
+def largest_eig(A):
+    '''
+        A wrapper over `scipy.linalg.eig` to produce
+        largest eigval and eigvector for A when A.shape is small
+    '''
+    vals, vectors = eig(A.todense())
+    real_indices = [idx for idx, val in enumerate(vals) if not bool(val.imag)]
+    vals = [vals[i].real for i in range(len(real_indices))]
+    vectors = [vectors[i] for i in range(len(real_indices))]
+    max_idx = np.argsort(vals)[-1]
+    return np.asarray([vals[max_idx]]), np.asarray([vectors[max_idx]]).T
