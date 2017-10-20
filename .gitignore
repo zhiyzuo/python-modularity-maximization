@@ -3,5 +3,14 @@
 dist/
 build/
 pyscopus/
-.ipy*
+*.ipy*
 python_modularity_maximization.egg-info/
+_site/dist
+_site/data
+_site/build
+_site/python_modularity_maximization.egg-info
+_site/requirements.txt
+_site/modularity_maximization
+_site/setup.py
+_site/LICENSE
+_site/README.rst
