@@ -3,7 +3,7 @@
 from .community_newman import partition
 from .utils import get_modularity
 
-__version__ = '0.0.1rc1'
+__version__ = '0.0.1rc2'
 
 __license__ = """
 Copyright 2017 Zhiya Zuo

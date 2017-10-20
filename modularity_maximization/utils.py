@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-
 import numpy as np
 import networkx as nx
 from scipy import sparse
+from itertools import product
 
 def get_base_modularity_matrix(network):
     '''
@@ -57,7 +57,7 @@ def _get_delta_Q(X, a):
 
 def get_modularity(network, community_dict):
     '''
-    Calculate the modularity.
+    Calculate the modularity. Edge weights are ignored.
 
     Undirected:
     .. math:: Q = \frac{1}{2m}\sum_{i,j} \(A_ij - \frac{k_i k_j}{2m}\) * \detal_(c_i, c_j)
@@ -80,24 +80,29 @@ def get_modularity(network, community_dict):
     '''
 
     Q = 0
-    A = nx.to_scipy_sparse_matrix(network).astype(float)
+    G = network.copy()
+    nx.set_edge_attributes(G, {e:1 for e in G.edges}, 'weight')
+    A = nx.to_scipy_sparse_matrix(G).astype(float)
 
-    if type(network) == nx.Graph:
+    if type(G) == nx.Graph:
         # for undirected graphs, in and out treated as the same thing
-        in_degree = dict(nx.degree(network))
-        out_degree = dict(nx.degree(network))
-        M = 2.*(network.number_of_edges())
-    elif type(network) == nx.DiGraph:
-        in_degree = dict(network.in_degree())
-        out_degree = dict(network.out_degree())
-        M = 1.*network.number_of_edges()
+        out_degree = in_degree = dict(nx.degree(G))
+        M = 2.*(G.number_of_edges())
+        print "Calculating modularity for undirected graph"
+    elif type(G) == nx.DiGraph:
+        in_degree = dict(G.in_degree())
+        out_degree = dict(G.out_degree())
+        M = 1.*G.number_of_edges()
+        print "Calculating modularity for directed graph"
+    else:
+        print 'Invalid graph type'
+        raise TypeError
 
-    from itertools import product
-    nodes = list(network)
+    nodes = list(G)
     Q = np.sum([A[i,j] - in_degree[nodes[i]]*\
                          out_degree[nodes[j]]/M\
                  for i, j in product(range(len(nodes)),\
-                                    range(len(nodes))) \
+                                     range(len(nodes))) \
                 if community_dict[nodes[i]] == community_dict[nodes[j]]])
     return Q / M
 

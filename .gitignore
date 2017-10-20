@@ -103,3 +103,7 @@ ENV/
 # mkdocs documentation
 /site
 
+## My own ignore items
+data/.DS_Store
+.DS_Store
+*.log

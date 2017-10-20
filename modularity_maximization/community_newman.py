@@ -43,7 +43,7 @@ def partition(network, refine=True):
     node_name = nx.get_node_attributes(network, 'node_name')
 
     ## only support unweighted network 
-    nx.set_edge_attributes(network, 'weight', {edge:1 for edge in network.edges()})
+    nx.set_edge_attributes(G=network, name='weight', values={edge:1 for edge in network.edges})
 
     B = utils.get_base_modularity_matrix(network)
 
