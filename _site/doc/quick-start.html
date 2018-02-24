@@ -72,24 +72,21 @@
 
 <p>The following two examples use data in the both cited papers mentioned in the index page.</p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">networkx</span> <span class="kn">as</span> <span class="nn">nx</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="n">nx</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">__version__</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <pre><code>'2.0'</code></pre>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">modularity_maximization</span> <span class="kn">import</span> <span class="n">partition</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">modularity_maximization</span> <span class="kn">import</span> <span class="n">partition</span>
 <span class="kn">from</span> <span class="nn">modularity_maximization.utils</span> <span class="kn">import</span> <span class="n">get_modularity</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h4 id="undirected-network">Undirected Network</h4>
 <h5 id="karate">Karate</h5>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">karate</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">read_pajek</span><span class="p">(</span><span class="s">"data/karate.net"</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">karate</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">read_pajek</span><span class="p">(</span><span class="s">"data/karate.net"</span><span class="p">))</span>
 <span class="k">print</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">karate</span><span class="p">))</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <pre><code>Name: 
 Type: Graph
@@ -98,12 +95,11 @@ Number of edges: 78
 Average degree:   4.5882
 </code></pre>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">comm_dict</span> <span class="o">=</span> <span class="n">partition</span><span class="p">(</span><span class="n">karate</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">comm_dict</span> <span class="o">=</span> <span class="n">partition</span><span class="p">(</span><span class="n">karate</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">comm</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">comm_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
     <span class="k">print</span><span class="p">(</span><span class="s">"Community </span><span class="si">%</span><span class="s">d"</span><span class="o">%</span><span class="n">comm</span><span class="p">)</span>
     <span class="k">print</span><span class="p">(</span><span class="s">', '</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">node</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">comm_dict</span> <span class="k">if</span> <span class="n">comm_dict</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">==</span> <span class="n">comm</span><span class="p">]))</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <pre><code>Community 3
 5, 7, 6, 11, 17
@@ -115,19 +111,17 @@ Community 6
 24, 25, 26, 28, 29, 32
 </code></pre>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">modularity_maximization.utils</span> <span class="kn">import</span> <span class="n">get_modularity</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">modularity_maximization.utils</span> <span class="kn">import</span> <span class="n">get_modularity</span>
 <span class="k">print</span><span class="p">(</span><span class="s">'Modularity of such partition for karate is </span><span class="si">%.3</span><span class="s">f'</span> <span class="o">%</span> <span class="n">get_modularity</span><span class="p">(</span><span class="n">karate</span><span class="p">,</span> <span class="n">comm_dict</span><span class="p">))</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <pre><code>Modularity of such partition for karate is 0.419</code></pre>
 
 <h5 id="jazz-network">Jazz Network</h5>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">jazz</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">read_pajek</span><span class="p">(</span><span class="s">"data/jazz.net"</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">jazz</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">read_pajek</span><span class="p">(</span><span class="s">"data/jazz.net"</span><span class="p">))</span>
 <span class="k">print</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">jazz</span><span class="p">))</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <pre><code>Name:
 Type: Graph
 Number of nodes: 198
@@ -135,12 +129,11 @@ Number of edges: 2742
 Average degree:  27.6970
 </code></pre>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">comm_dict</span> <span class="o">=</span> <span class="n">partition</span><span class="p">(</span><span class="n">jazz</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">comm_dict</span> <span class="o">=</span> <span class="n">partition</span><span class="p">(</span><span class="n">jazz</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">comm</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">comm_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
     <span class="k">print</span><span class="p">(</span><span class="s">"Community </span><span class="si">%</span><span class="s">d"</span><span class="o">%</span><span class="n">comm</span><span class="p">)</span>
     <span class="k">print</span><span class="p">(</span><span class="s">', '</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">node</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">comm_dict</span> <span class="k">if</span> <span class="n">comm_dict</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">==</span> <span class="n">comm</span><span class="p">]))</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <pre><code>Community 3
     130, 127, 129, 69, 55, 54, 57, 56, 53, 52, 195, 194, 197, 67, 192, 114, 89, 113, 112, 83, 7, 103, 31, 30, 36, 34, 61, 178, 174, 186, 196, 185, 164, 165, 161, 11, 10, 12, 14, 19, 151, 150, 158, 49, 87, 142, 141, 74, 72, 71, 70, 2
@@ -152,9 +145,8 @@ Average degree:  27.6970
     137, 93, 94, 121, 125, 59, 190, 193, 111, 82, 118, 84, 177, 175, 183, 117, 116, 9, 146, 143
 </code></pre>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">'Modularity of such partition for jazz is </span><span class="si">%.3</span><span class="s">f'</span> <span class="o">%</span> <span class="n">get_modularity</span><span class="p">(</span><span class="n">jazz</span><span class="p">,</span> <span class="n">comm_dict</span><span class="p">))</span>
-</code></pre>
-</div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">'Modularity of such partition for jazz is </span><span class="si">%.3</span><span class="s">f'</span> <span class="o">%</span> <span class="n">get_modularity</span><span class="p">(</span><span class="n">jazz</span><span class="p">,</span> <span class="n">comm_dict</span><span class="p">))</span>
+</code></pre></div></div>
 
 <pre><code>
     Calculating modularity for undirected graph
@@ -163,10 +155,9 @@ Average degree:  27.6970
 
 <h4 id="directed-network-big-10-football-season-2005">Directed Network: Big 10 Football Season 2005</h4>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">big_10_football</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">read_gml</span><span class="p">(</span><span class="s">"data/big_10_football_directed.gml"</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">big_10_football</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">read_gml</span><span class="p">(</span><span class="s">"data/big_10_football_directed.gml"</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">big_10_football</span><span class="p">))</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <pre><code>Name: 
 Type: DiGraph
@@ -176,12 +167,11 @@ Average in degree:   4.0000
 Average out degree:   4.0000
 </code></pre>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">comm_dict</span> <span class="o">=</span> <span class="n">partition</span><span class="p">(</span><span class="n">big_10_football</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">comm_dict</span> <span class="o">=</span> <span class="n">partition</span><span class="p">(</span><span class="n">big_10_football</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">comm</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">comm_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
     <span class="k">print</span><span class="p">(</span><span class="s">"Community </span><span class="si">%</span><span class="s">d"</span><span class="o">%</span><span class="n">comm</span><span class="p">)</span>
     <span class="k">print</span><span class="p">(</span><span class="s">', '</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">node</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">comm_dict</span> <span class="k">if</span> <span class="n">comm_dict</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">==</span> <span class="n">comm</span><span class="p">]))</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <pre><code>Community 1
 OhioState, Northwestern, Wisconsin, Iowa, PennState, Michigan, Minnesota
@@ -189,10 +179,9 @@ Community 2
 Purdue, Illinois, MichiganState, Indiana
 </code></pre>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">'Modularity of such partition for karate is </span><span class="si">%.3</span><span class="s">f'</span> <span class="o">%</span>\
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">'Modularity of such partition for karate is </span><span class="si">%.3</span><span class="s">f'</span> <span class="o">%</span>\
       <span class="n">get_modularity</span><span class="p">(</span><span class="n">big_10_football</span><span class="p">,</span> <span class="n">comm_dict</span><span class="p">))</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <pre><code>Calculating modularity for directed graph
 Modularity of such partition for karate is 0.112
