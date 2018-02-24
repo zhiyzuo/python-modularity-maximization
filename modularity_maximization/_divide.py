@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-import utils
 import numpy as np
 import networkx as nx
 from scipy import sparse
+from modularity_maximization import utils
 
 def _divide(network, community_dict, comm_index, B, refine=False):
     '''

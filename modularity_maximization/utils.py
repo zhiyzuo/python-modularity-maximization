@@ -89,14 +89,14 @@ def get_modularity(network, community_dict):
         # for undirected graphs, in and out treated as the same thing
         out_degree = in_degree = dict(nx.degree(G))
         M = 2.*(G.number_of_edges())
-        print "Calculating modularity for undirected graph"
+        print("Calculating modularity for undirected graph")
     elif type(G) == nx.DiGraph:
         in_degree = dict(G.in_degree())
         out_degree = dict(G.out_degree())
         M = 1.*G.number_of_edges()
-        print "Calculating modularity for directed graph"
+        print("Calculating modularity for directed graph")
     else:
-        print 'Invalid graph type'
+        print('Invalid graph type')
         raise TypeError
 
     nodes = list(G)

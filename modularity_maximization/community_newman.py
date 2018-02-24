@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import numpy as np
-import utils, _divide
 import networkx as nx
 from collections import deque
-
-__author__ = """Zhiya Zuo (zhiyazuo@gmail.com)"""
+from modularity_maximization import utils, _divide
 
 def partition(network, refine=True):
     '''
@@ -100,4 +98,3 @@ def partition(network, refine=True):
         '''
 
     return {node_name[u]: community_dict[u] for u in network}
-
