@@ -14,3 +14,4 @@ _site/modularity_maximization
 _site/setup.py
 _site/LICENSE
 _site/README.rst
+.ipynb_checkpoints
