@@ -5,7 +5,7 @@ category: doc
 date: 2017-04-14
 ---
 
-The following two examples use data in the both cited papers mentioned in the index page.
+The following two examples use data in the both cited papers mentioned in the index page. This is also available in [jupyter notebook format](https://github.com/zhiyzuo/python-modularity-maximization/blob/master/Quick-Start.ipynb)
 
 ```python
 import networkx as nx
